@@ -24,8 +24,6 @@ export default class Game {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
-  activePieceX = 0;
-  activePieceY = 0;
   activePiece = {
     x: 0,
     y: 0,
@@ -35,4 +33,43 @@ export default class Game {
       [0, 0, 0],
     ],
   }
+
+  movePieceLeft() {
+    this.activePiece.x -= 1;
+
+    if(this.isPieceOutOfBounds()) {
+      this.activePiece.x += 1;
+    }
+  }
+
+  movePieceRight() {
+    this.activePiece.x += 1;
+
+    if(this.isPieceOutOfBounds()) {
+      this.activePiece.x -= 1;
+    }
+  }
+
+  movePieceDown() {
+    this.activePiece.y += 1;
+
+    if(this.isPieceOutOfBounds()) {
+      this.activePiece.y -= 1;
+    }
+  }
+
+  isPieceOutOfBounds() {
+
+    const playField = this.playField;
+    const {x, y} = this.activePiece;
+
+    // will return true if y is out of (0-20) range or if x is out of (0-10) range
+    return playField[y] === undefined || playField[y][x] === undefined
+  }
+
 }
+
+
+
+
+
