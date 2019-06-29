@@ -34,6 +34,8 @@ export default class Game {
     ],
   }
 
+
+
   movePieceLeft() {
     this.activePiece.x -= 1;
 
@@ -41,6 +43,7 @@ export default class Game {
       this.activePiece.x += 1;
     }
   }
+
 
 
   movePieceRight() {
@@ -52,6 +55,7 @@ export default class Game {
   }
 
 
+
   movePieceDown() {
     this.activePiece.y += 1;
 
@@ -60,6 +64,7 @@ export default class Game {
       this.lockPiece();
     }
   }
+
 
 
   hasCollision() {
@@ -75,10 +80,9 @@ export default class Game {
       }
     }
 
-
-
     return false;
   }
+
 
 
   lockPiece() {
@@ -92,7 +96,6 @@ export default class Game {
       }
     }
   }
-
 
 
 
