@@ -74,7 +74,7 @@ export default class Game {
       for (let x = 0; x < blocks[y].length; x++) {
         if (blocks[y][x] &&
           ((this.playField[pieceY + y] === undefined || this.playField[pieceY + y][pieceX + x] === undefined) || this.playField[pieceY + y][pieceX + x])
-        ) {
+          ) {
           return true; // will return true if y is out of (0-19) range or if x is out of (0-9) range
         }
       }
