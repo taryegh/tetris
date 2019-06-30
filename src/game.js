@@ -35,70 +35,39 @@ export default class Game {
   }
 
 
-
   movePieceLeft() {
     this.activePiece.x -= 1;
-
-    if (this.hasCollision()) {
+    
+    if (this.isPieceOutOfBounds()) {
       this.activePiece.x += 1;
     }
   }
 
 
-
   movePieceRight() {
     this.activePiece.x += 1;
 
-    if (this.hasCollision()) {
+    if (this.isPieceOutOfBounds()) {
       this.activePiece.x -= 1;
     }
   }
 
 
-
   movePieceDown() {
     this.activePiece.y += 1;
-
-    if (this.hasCollision()) {
+    
+    if (this.isPieceOutOfBounds()) {
       this.activePiece.y -= 1;
-      this.lockPiece();
     }
   }
 
 
+  isPieceOutOfBounds() {
+    const playField = this.playField;
+    const { x, y } = this.activePiece;
 
-  hasCollision() {
-    const { x: pieceX, y: pieceY, blocks } = this.activePiece;
-
-    for (let y = 0; y < blocks.length; y++) {
-      for (let x = 0; x < blocks[y].length; x++) {
-        if (blocks[y][x] &&
-          ((this.playField[pieceY + y] === undefined || this.playField[pieceY + y][pieceX + x] === undefined 
-          || this.playField[pieceY + y][pieceX + x])
-          ) {
-          return true; // will return true if y is out of (0-19) range or if x is out of (0-9) range
-        }
-      }
-    }
-
-    return false;
+    return playField[y] === undefined || playField[y][x] === undefined;
   }
-
-
-
-  lockPiece() {
-    const { x: pieceX, y: pieceY, blocks } = this.activePiece;
-
-    for (let y = 0; y < blocks.length; y++) {
-      for (let x = 0; x < blocks[y].length; x++) {
-        if (blocks[y][x]) {
-          this.playField[pieceY + y][pieceX + x] = blocks[y][x];
-        }
-      }
-    }
-  }
-
-
 
 }
 
