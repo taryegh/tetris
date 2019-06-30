@@ -37,7 +37,7 @@ export default class Game {
 
   movePieceLeft() {
     this.activePiece.x -= 1;
-    
+
     if (this.isPieceOutOfBounds()) {
       this.activePiece.x += 1;
     }
@@ -55,7 +55,7 @@ export default class Game {
 
   movePieceDown() {
     this.activePiece.y += 1;
-    
+
     if (this.isPieceOutOfBounds()) {
       this.activePiece.y -= 1;
     }
@@ -69,6 +69,16 @@ export default class Game {
     return playField[y] === undefined || playField[y][x] === undefined;
   }
 
+
+  lockPiece() {
+    const { y: pieceY, x: pieceX, blocks } = this.activePiece;
+
+    for (let y = 0; y < blocks.length; y++) {
+      for (let x = 0; x < blocks[y].length; x++) {
+        this.playField[pieceY + y][pieceX + x] = blocks[y][x];
+      }
+    }
+  }
 }
 
 
