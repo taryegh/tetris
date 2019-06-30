@@ -38,7 +38,7 @@ export default class Game {
   movePieceLeft() {
     this.activePiece.x -= 1;
 
-    if (this.isPieceOutOfBounds()) {
+    if (this.hasCollision()) {
       this.activePiece.x += 1;
     }
   }
@@ -47,7 +47,7 @@ export default class Game {
   movePieceRight() {
     this.activePiece.x += 1;
 
-    if (this.isPieceOutOfBounds()) {
+    if (this.hasCollision()) {
       this.activePiece.x -= 1;
     }
   }
@@ -56,26 +56,46 @@ export default class Game {
   movePieceDown() {
     this.activePiece.y += 1;
 
-    if (this.isPieceOutOfBounds()) {
+    if (this.hasCollision()) {
       this.activePiece.y -= 1;
+      this.lockPiece();
     }
   }
 
 
-  isPieceOutOfBounds() {
-    const playField = this.playField;
-    const { x, y } = this.activePiece;
 
-    return playField[y] === undefined || playField[y][x] === undefined;
+  hasCollision() {
+    const { y: pieceY, x: pieceX, blocks } = this.activePiece;
+
+    /* [0, 1, 0],
+       [1, 1, 1],
+       [0, 0, 0], */
+
+    for (let y = 0; y < blocks.length; y++) {
+      for (let x = 0; x < blocks[y].length; x++) {
+        if (
+          blocks[y][x] && // if there is 1
+          ((this.playField[pieceY + y] === undefined || this.playField[pieceY + y][pieceX + x] === undefined) // if we are out from the (0-19) row range, or we are out of (0-9) column range
+           || this.playField[pieceY + y][pieceX + x]) // if there is 1
+        ) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
 
+  // LOCK PIECE
   lockPiece() {
     const { y: pieceY, x: pieceX, blocks } = this.activePiece;
 
     for (let y = 0; y < blocks.length; y++) {
       for (let x = 0; x < blocks[y].length; x++) {
-        this.playField[pieceY + y][pieceX + x] = blocks[y][x];
+        if (blocks[y][x]) {
+          this.playField[pieceY + y][pieceX + x] = blocks[y][x];
+        }
       }
     }
   }
