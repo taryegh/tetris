@@ -32,6 +32,29 @@ export default class Game {
       [1, 1, 1],
       [0, 0, 0],
     ],
+    rotationIndex: 0,
+    rotations: [
+      [
+        [0, 1, 0],
+        [1, 1, 1],
+        [0, 0, 0],
+      ],
+      [
+        [0, 1, 0],
+        [0, 1, 1],
+        [0, 1, 0],
+      ],
+      [
+        [0, 0, 0],
+        [1, 1, 1],
+        [0, 1, 0],
+      ],
+      [
+        [0, 1, 0],
+        [1, 1, 0],
+        [0, 1, 0],
+      ],
+    ]
   }
 
 
@@ -63,6 +86,21 @@ export default class Game {
   }
 
 
+  rotatePiece() {
+    this.activePiece.rotationIndex = (this.activePiece.rotationIndex + 1) % 4;
+    this.activePiece.blocks = this.activePiece
+    return this.activePiece;
+  }
+  
+  
+  // rotatePiece() {
+  //   if(this.activePiece.rotationIndex === 3) {
+  //     this.activePiece.rotationIndex = 1;
+  //   } else {
+  //     this.activePiece.rotationIndex += 1;
+  //   }
+  // }
+
 
   hasCollision() {
     const { y: pieceY, x: pieceX, blocks } = this.activePiece;
@@ -76,7 +114,7 @@ export default class Game {
         if (
           blocks[y][x] && // if there is 1
           ((this.playField[pieceY + y] === undefined || this.playField[pieceY + y][pieceX + x] === undefined) // if we are out from the (0-19) row range, or we are out of (0-9) column range
-           || this.playField[pieceY + y][pieceX + x]) // if there is 1
+            || this.playField[pieceY + y][pieceX + x]) // if there is 1
         ) {
           return true;
         }
@@ -87,7 +125,6 @@ export default class Game {
   }
 
 
-  // LOCK PIECE
   lockPiece() {
     const { y: pieceY, x: pieceX, blocks } = this.activePiece;
 
@@ -99,6 +136,12 @@ export default class Game {
       }
     }
   }
+
+
+
+
+
+
 }
 
 
