@@ -94,8 +94,6 @@ export default class Game {
 
     return this.activePiece.blocks;
   }
-  
-
 
 
   hasCollision() {
@@ -132,11 +130,6 @@ export default class Game {
       }
     }
   }
-
-
-
-
-
 
 }
 
