@@ -27,11 +27,9 @@ export default class Game {
   activePiece = {
     x: 0,
     y: 0,
-    blocks: [
-      [0, 1, 0],
-      [1, 1, 1],
-      [0, 0, 0],
-    ],
+    get blocks() {
+      return this.rotations[this.rotationIndex];
+    },
     rotationIndex: 0,
     rotations: [
       [
@@ -88,8 +86,7 @@ export default class Game {
 
   rotatePiece() {
     this.activePiece.rotationIndex = (this.activePiece.rotationIndex + 1) % 4;
-    this.activePiece.blocks = this.activePiece
-    return this.activePiece;
+    return this.activePiece.blocks;
   }
   
   
