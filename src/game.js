@@ -85,18 +85,17 @@ export default class Game {
 
 
   rotatePiece() {
-    this.activePiece.rotationIndex = (this.activePiece.rotationIndex + 1) % 4;
+    this.activePiece.rotationIndex = this.activePiece.rotationIndex < 3 ? this.activePiece.rotationIndex + 1 : 0;
+    console.log(this.hasCollision());
+
+    if (this.hasCollision()) {
+      this.activePiece.rotationIndex = this.activePiece.rotationIndex > 0 ? this.activePiece.rotationIndex - 1 : 3;
+    }
+
     return this.activePiece.blocks;
   }
   
-  
-  // rotatePiece() {
-  //   if(this.activePiece.rotationIndex === 3) {
-  //     this.activePiece.rotationIndex = 1;
-  //   } else {
-  //     this.activePiece.rotationIndex += 1;
-  //   }
-  // }
+
 
 
   hasCollision() {
