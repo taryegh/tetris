@@ -3,7 +3,7 @@ export default class Game {
   lines = 0;
   level = 0;
   playField = this.createPlayField();
-  
+
   /* [
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
     [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
@@ -28,11 +28,13 @@ export default class Game {
   ]; */
 
   activePiece = {
-    x: 0,
-    y: 0,
-    get blocks() {
+    x: 0, // initial position x
+    y: 0, // initial position y
+
+    get blocks() { // why only with get will work ?????????
       return this.rotations[this.rotationIndex];
     },
+
     rotationIndex: 0,
     rotations: [
       [
@@ -55,12 +57,42 @@ export default class Game {
         [1, 1, 0],
         [0, 1, 0],
       ],
-    ]
+    ],
+
+    //block: this.rotations[this.rotationIndex], why this won't work ???????
   }
 
 
+
+
+
+
+
+  // Copying elements from block to playField
   getState() {
+    
     const playField = this.createPlayField();
+    // const playField = this.playField; why won't work with this ????????
+    
+    // for (let y = 0; y < this.playField.length; y++) {
+    //   playField[y] = [];
+    //   for (let x = 0; x < 10; x++) {
+    //     playField[y][x] = this.playField[y][x]; 
+    //   }
+    // }
+
+    /* [0, 1, 0],
+       [1, 1, 1],
+       [0, 0, 0], */
+
+    for (let y = 0; y < this.activePiece.blocks.length; y++) {
+      for (let x = 0; x < this.activePiece.blocks[y].length; x++) {
+        if (this.activePiece.blocks[y][x]) {
+          playField[this.activePiece.y + y][this.activePiece.x + x] = this.activePiece.blocks[y][x];
+        }
+
+      }
+    }
 
     return {
       playField,
@@ -68,18 +100,23 @@ export default class Game {
   }
 
 
+  // Creating the PlayField and filling it with 0s
   createPlayField() {
     const playField = [];
 
     for (let y = 0; y < 20; y++) {
       playField[y] = [];
-      
+
       for (let x = 0; x < 10; x++) {
         playField[y][x] = 0;
-        
+
       }
     }
+
+    return playField;
   }
+
+
 
   movePieceLeft() {
     this.activePiece.x -= 1;
@@ -111,7 +148,6 @@ export default class Game {
 
   rotatePiece() {
     this.activePiece.rotationIndex = this.activePiece.rotationIndex < 3 ? this.activePiece.rotationIndex + 1 : 0;
-    console.log(this.hasCollision());
 
     if (this.hasCollision()) {
       this.activePiece.rotationIndex = this.activePiece.rotationIndex > 0 ? this.activePiece.rotationIndex - 1 : 3;
