@@ -158,7 +158,7 @@ export default class Game {
 
 
   hasCollision() {
-    const { y: pieceY, x: pieceX, blocks } = this.activePiece;
+    const { y: pieceY, x: pieceX, blocks } = this.activePiece; // destructuring
 
     /* [0, 1, 0],
        [1, 1, 1],
@@ -167,9 +167,9 @@ export default class Game {
     for (let y = 0; y < blocks.length; y++) {
       for (let x = 0; x < blocks[y].length; x++) {
         if (
-          blocks[y][x] && // if there is 1
+          blocks[y][x] && // if inside the block there is 1
           ((this.playField[pieceY + y] === undefined || this.playField[pieceY + y][pieceX + x] === undefined) // if we are out from the (0-19) row range, or we are out of (0-9) column range
-            || this.playField[pieceY + y][pieceX + x]) // if there is 1
+            || this.playField[pieceY + y][pieceX + x]) // ?????????????????
         ) {
           return true;
         }
@@ -179,7 +179,7 @@ export default class Game {
     return false;
   }
 
-
+  // Locking piece
   lockPiece() {
     const { y: pieceY, x: pieceX, blocks } = this.activePiece;
 
