@@ -15,9 +15,20 @@ export default class View {
     this.element.appendChild(this.canvas);
   }
 
-  renderPlayField(playfield) {
-    for (let y = 0; y < playfield.length; y++) {
-      const line = playfield[y];
+  render({playField}) {
+    this.clearScreen();
+    this.renderPlayField(playField);
+  }
+
+
+  clearScreen() {
+    this.context.clearRect(0, 0, this.width, this.height);
+  }
+
+
+  renderPlayField(playField) {
+    for (let y = 0; y < playField.length; y++) {
+      const line = playField[y];
       
       for (let x = 0; x < line.length; x++) {
         const block = line[x];
@@ -33,4 +44,6 @@ export default class View {
       
     }
   }
+
+
 }
