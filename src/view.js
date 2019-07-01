@@ -15,7 +15,7 @@ export default class View {
     this.element.appendChild(this.canvas);
   }
 
-  render({playField}) {
+  render({playField}) { // from where it is restructured ????????????/
     this.clearScreen();
     this.renderPlayField(playField);
   }
