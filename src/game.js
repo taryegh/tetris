@@ -2,7 +2,9 @@ export default class Game {
   score = 0;
   lines = 0;
   level = 0;
-  playField = [
+  playField = this.createPlayField();
+  
+  /* [
     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
     [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -23,7 +25,8 @@ export default class Game {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
+  ]; */
+
   activePiece = {
     x: 0,
     y: 0,
@@ -55,6 +58,28 @@ export default class Game {
     ]
   }
 
+
+  getState() {
+    const playField = this.createPlayField();
+
+    return {
+      playField,
+    }
+  }
+
+
+  createPlayField() {
+    const playField = [];
+
+    for (let y = 0; y < 20; y++) {
+      playField[y] = [];
+      
+      for (let x = 0; x < 10; x++) {
+        playField[y][x] = 0;
+        
+      }
+    }
+  }
 
   movePieceLeft() {
     this.activePiece.x -= 1;
