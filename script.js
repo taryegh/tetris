@@ -9,5 +9,5 @@ const view = new View(root, 320, 640, 20, 10);
 window.game = game;
 window.view = view;
 
-view.render(game.getState());
 
+view.render(game.getState());
