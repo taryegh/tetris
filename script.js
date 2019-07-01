@@ -10,4 +10,26 @@ window.game = game;
 window.view = view;
 
 
-view.render(game.getState());
+
+// EVENT LISTENERS
+document.addEventListener('keydown', event => {
+  switch (event.which) {
+    case 37: // Left
+      game.movePieceLeft();
+      view.render(game.getState());
+      break;
+    case 38: // Up
+      game.rotatePiece();
+      view.render(game.getState());
+      break;
+    case 39: // Right
+      game.movePieceRight();
+      view.render(game.getState());
+      break;
+    case 40: // Down
+      game.movePieceDown();
+      view.render(game.getState());
+      break;
+  }
+});
+

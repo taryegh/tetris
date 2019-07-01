@@ -35,6 +35,7 @@ export default class Game {
       return this.rotations[this.rotationIndex];
     },
 
+
     rotationIndex: 0,
     rotations: [
       [
@@ -70,10 +71,11 @@ export default class Game {
 
   // Copying elements from block to playField
   getState() {
-    
+    const { y: pieceY, x: pieceX, blocks } = this.activePiece;
+
     const playField = this.createPlayField();
     // const playField = this.playField; why won't work with this ????????
-    
+
     // for (let y = 0; y < this.playField.length; y++) {
     //   playField[y] = [];
     //   for (let x = 0; x < 10; x++) {
@@ -85,10 +87,10 @@ export default class Game {
        [1, 1, 1],
        [0, 0, 0], */
 
-    for (let y = 0; y < this.activePiece.blocks.length; y++) {
-      for (let x = 0; x < this.activePiece.blocks[y].length; x++) {
-        if (this.activePiece.blocks[y][x]) {
-          playField[this.activePiece.y + y][this.activePiece.x + x] = this.activePiece.blocks[y][x];
+    for (let y = 0; y < blocks.length; y++) {
+      for (let x = 0; x < blocks[y].length; x++) {
+        if (blocks[y][x]) {
+          playField[pieceY + y][pieceX + x] = blocks[y][x];
         }
 
       }
@@ -192,7 +194,41 @@ export default class Game {
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+  allTetroes(type) {
+    return function (type) {
+      if (type === 'T') {
+        return [
+          [0, 1, 0],
+          [1, 1, 1],
+          [0, 0, 0],
+        ];
+      }
+      if (type === 'J') {
+        return [
+          [0, 1, 0],
+          [0, 1, 0],
+          [1, 1, 0],
+        ]
+      }
+    }
+  }
+
 }
+
+
+
+
+
 
 
 
