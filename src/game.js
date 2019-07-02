@@ -97,9 +97,12 @@ export default class Game {
       },
 
 
+
       rotationIndex: 0,
       rotations: this.allTetroes()[Math.floor(Math.random() * 7)],
       
+      x: Math.floor((10 - this.allTetroes()[Math.floor(Math.random() * 7)][0].length) / 2), // initial position y
+      y: 0, // initial position y
       
 
       //block: this.rotations[this.rotationIndex], why this won't work ???????
