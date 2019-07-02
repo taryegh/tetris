@@ -27,41 +27,9 @@ export default class Game {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]; */
 
-  activePiece = {
-    x: 0, // initial position x
-    y: 0, // initial position y
+  activePiece = this.createPiece();
 
-    get blocks() { // why only with get will work ?????????
-      return this.rotations[this.rotationIndex];
-    },
-
-
-    rotationIndex: 0,
-    rotations: [
-      [
-        [0, 1, 0],
-        [1, 1, 1],
-        [0, 0, 0],
-      ],
-      [
-        [0, 1, 0],
-        [0, 1, 1],
-        [0, 1, 0],
-      ],
-      [
-        [0, 0, 0],
-        [1, 1, 1],
-        [0, 1, 0],
-      ],
-      [
-        [0, 1, 0],
-        [1, 1, 0],
-        [0, 1, 0],
-      ],
-    ],
-
-    //block: this.rotations[this.rotationIndex], why this won't work ???????
-  }
+  nextPiece = this.createPiece();
 
 
 
@@ -119,6 +87,44 @@ export default class Game {
   }
 
 
+  createPiece() {
+    return {
+      x: 0, // initial position x
+      y: 0, // initial position y
+
+      get blocks() { // why only with get will work ?????????
+        return this.rotations[this.rotationIndex];
+      },
+
+
+      rotationIndex: 0,
+      rotations: [
+        [
+          [0, 1, 0],
+          [1, 1, 1],
+          [0, 0, 0],
+        ],
+        [
+          [0, 1, 0],
+          [0, 1, 1],
+          [0, 1, 0],
+        ],
+        [
+          [0, 0, 0],
+          [1, 1, 1],
+          [0, 1, 0],
+        ],
+        [
+          [0, 1, 0],
+          [1, 1, 0],
+          [0, 1, 0],
+        ],
+      ],
+
+      //block: this.rotations[this.rotationIndex], why this won't work ???????
+    }
+  }
+
 
   movePieceLeft() {
     this.activePiece.x -= 1;
@@ -144,6 +150,7 @@ export default class Game {
     if (this.hasCollision()) {
       this.activePiece.y -= 1;
       this.lockPiece();
+      this.updatePieces();
     }
   }
 
@@ -197,31 +204,15 @@ export default class Game {
 
 
 
-
-
-
-
-
-
-
-  allTetroes(type) {
-    return function (type) {
-      if (type === 'T') {
-        return [
-          [0, 1, 0],
-          [1, 1, 1],
-          [0, 0, 0],
-        ];
-      }
-      if (type === 'J') {
-        return [
-          [0, 1, 0],
-          [0, 1, 0],
-          [1, 1, 0],
-        ]
-      }
-    }
+  updatePieces() {
+    this.activePiece = this.nextPiece;
+    this.nextPiece = this.createPiece();
   }
+
+
+
+
+
 
 }
 
