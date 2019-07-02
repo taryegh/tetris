@@ -33,7 +33,7 @@ document.addEventListener('keydown', event => {
   }
 });
 
-// setInterval(() => {
-//   game.movePieceDown();
-//       view.render(game.getState());
-// }, 1000);
+setInterval(() => {
+  game.movePieceDown();
+      view.render(game.getState());
+}, 1000);

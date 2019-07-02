@@ -89,8 +89,8 @@ export default class Game {
 
   createPiece() {
     return {
-      x: 0, // initial position x
-      y: 0, // initial position y
+      x: 3, // initial position x
+      y: -1, // initial position y
 
       get blocks() { // why only with get will work ?????????
         return this.rotations[this.rotationIndex];

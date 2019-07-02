@@ -51,5 +51,6 @@ export default class View {
     this.context.strokeRect(x, y, width, height);
   }
 
+  
 
 }
