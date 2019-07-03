@@ -35,5 +35,7 @@ document.addEventListener('keydown', event => {
 
 setInterval(() => {
   game.movePieceDown();
-      view.render(game.getState());
+  view.render(game.getState());
+  document.getElementById('sc-text').innerHTML = game.score;
 }, 1000);
+

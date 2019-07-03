@@ -3,6 +3,12 @@ body {
   background-color: rgb(21, 27, 34);
 }
 
+#flex {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
 #root {
   padding: 2rem;
   text-align: center;
@@ -19,4 +25,24 @@ body {
   margin: 0 auto;
   border: 3px solid rgb(236, 229, 229);
   border-radius: 1%;
+}
+
+#score {
+  display: inline-block;
+
+  height: 100px;
+  width: 140px;
+  margin-top: 555px;
+  color: white;
+  font-family: 'Press Start 2P', Consolas, monospace;
+  font-size: 20px;
+
+  
+  
+
+}
+
+
+#score p {
+  font-size: 30px
 }

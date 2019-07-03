@@ -100,10 +100,10 @@ export default class Game {
 
       rotationIndex: 0,
       rotations: this.allTetroes()[Math.floor(Math.random() * 7)],
-      
+
       x: Math.floor((10 - this.allTetroes()[Math.floor(Math.random() * 7)][0].length) / 2), // initial position y
       y: 0, // initial position y
-      
+
 
       //block: this.rotations[this.rotationIndex], why this won't work ???????
     }
@@ -135,6 +135,9 @@ export default class Game {
       this.activePiece.y -= 1;
       this.lockPiece();
       this.updatePieces();
+      this.deleteLine();
+      this.gameOver()
+
 
     }
   }
@@ -366,8 +369,36 @@ export default class Game {
         ],
       ],
     ]
+  }
+
+  deleteLine() {
+
+    for (let y = 0; y < this.playField.length; y++) {
+      let count = 0;
+      for (let x = 0; x < this.playField[y].length; x++) {
+        if (this.playField[y][x] !== 0) {
+          ++count;
+        }
+      }
+      if (count === 10) {
+        this.playField.splice(y, 1);
+        this.playField.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        
+        // this.playField[y] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        this.score += 10;
+      }
+    }
+  }
 
 
+  gameOver() {
+
+    for (let x = 0; x < this.playField[0].length; x++) {
+      if (this.playField[0][x]) {
+        this.getState = false;
+      }
+
+    }
 
   }
 
@@ -375,6 +406,11 @@ export default class Game {
 
 
 
+
 }
+
+
+
+
 
 
