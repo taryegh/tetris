@@ -1,3 +1,3 @@
 # tetris
 
-A bit more hardcoded tetris
+simple tetris
