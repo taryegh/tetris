@@ -15,7 +15,7 @@ body {
 }
 
 #root h1 {
-  font-family: 'Press Start 2P', Consolas, monospace;
+  font-family: "Press Start 2P", Consolas, monospace;
   color: white;
   margin-bottom: 30px;
 }
@@ -34,15 +34,24 @@ body {
   width: 140px;
   margin-top: 555px;
   color: white;
-  font-family: 'Press Start 2P', Consolas, monospace;
+  font-family: "Press Start 2P", Consolas, monospace;
   font-size: 20px;
-
-  
-  
-
 }
 
-
 #score p {
-  font-size: 30px
+  font-size: 30px;
+}
+
+#game-over {
+  height: 180px;
+  width: 300px;
+  position: absolute;
+  top: 140px;
+  left: 440px;
+  background-color: rgb(159, 62, 62);
+  border: 2px solid beige;
+  text-align: center;
+  font-family: "Press Start 2P", Consolas, monospace;
+  color: white;
+  display: none;
 }

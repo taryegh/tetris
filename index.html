@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+    />
+    <link rel="stylesheet" href="style.css" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
-  <link rel="stylesheet" href="style.css">
+    <title>Tetris</title>
+  </head>
 
-  <title>Tetris</title>
-</head>
+  <body>
+    <div id="flex">
+      <div id="root">
+        <h1>
+          <span style="color: #E7F2F8">T</span
+          ><span style="color: #74BDCB">E</span
+          ><span style="color: #FFA384">T</span
+          ><span style="color: #EFE7BC">R</span
+          ><span style="color: #CDDC39">I</span
+          ><span style="color: #F0F4C3">S</span>
+        </h1>
+      </div>
 
-<body>
-
-  <div id="flex">
-
-    <div id="root">
-      <h1>
-        <span style="color: #E7F2F8">T</span><span style="color: #74BDCB">E</span><span
-          style="color: #FFA384">T</span><span style="color: #EFE7BC">R</span><span style="color: #CDDC39">I</span><span
-          style="color: #F0F4C3">S</span>
-      </h1>
+      <div id="score">
+        <h4>Score</h4>
+        <p id="sc-text">0</p>
+      </div>
     </div>
 
-
-
-    <div id="score">
-      <h4>Score</h4>
-      <p id='sc-text'>0</p>
+    <div id="game-over">
+      <h2>Game over</h2>
     </div>
-  </div>
+  </body>
 
-
-</body>
-
-<script src="script.js" type="module"></script>
-
+  <script src="script.js" type="module"></script>
 </html>
